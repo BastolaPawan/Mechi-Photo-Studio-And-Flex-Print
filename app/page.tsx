@@ -1,3 +1,5 @@
+import SiteNav from "@/components/SiteNav";
+
 const services = [
   {
     number: "01",
@@ -57,18 +59,7 @@ const gallery = [
 export default function Home() {
   return (
     <main>
-      <nav className="nav wrap" aria-label="Main navigation">
-        <a className="brand" href="#" aria-label="Mechi Photo Studio home">
-          <span className="brand-mark">MP</span>
-          <span>Mechi <strong>Photo Studio &amp; Flex Print</strong></span>
-        </a>
-        <div className="nav-links">
-          <a href="#services">Services</a>
-          <a href="#work">Our Work</a>
-          <a href="#about">About</a>
-          <a className="nav-contact" href="#contact">Visit Us</a>
-        </div>
-      </nav>
+      <SiteNav />
 
       <header className="hero wrap">
         <div className="hero-copy">
