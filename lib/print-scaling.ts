@@ -1,9 +1,10 @@
-export type Unit = "in" | "cm" | "ft";
+export type Unit = "in" | "cm" | "ft" | "m";
 
 export function inchesFromUnit(value: number, unit: Unit): number {
   if (!Number.isFinite(value)) return 0;
   if (unit === "cm") return value / 2.54;
   if (unit === "ft") return value * 12;
+  if (unit === "m") return value * 39.37007874015748;
   return value;
 }
 

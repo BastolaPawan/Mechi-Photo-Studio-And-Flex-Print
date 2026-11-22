@@ -44,3 +44,11 @@ Use status `coming-soon` until the page is ready. It is rendered as a disabled c
 Edit `data/print-sizes.config.ts` for preset labels and real inch dimensions. Flex presets are stored internally in inches.
 
 The visualizer intentionally does not display prices. `data/print-prices.config.ts` may remain available for future pricing work, but it is not exposed by the print-sizes API or rendered in the tool.
+
+## Frame Layout Maker
+
+Open `/tools/frame-layout` to design a wall with obstacles and photo frames. Layout state is saved locally and can be shared through an encoded URL hash.
+
+- Edit print sizes in `data/print-sizes.config.ts`.
+- Edit estimated prices in `data/print-prices.config.ts`. Missing entries are shown as "Ask for price".
+- Add quick-start layouts in `data/frame-layout.config.ts`; each template uses frame dimensions in inches.

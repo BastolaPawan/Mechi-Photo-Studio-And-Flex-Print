@@ -300,6 +300,84 @@ footer { background: var(--navy); color: white; }
 
 button:focus-visible, a:focus-visible, input:focus-visible, .upload-button:focus-within { outline: 3px solid #e9a23b; outline-offset: 2px; }
 
+/* Frame layout maker */
+.frame-layout-page { min-height: 100vh; background: #f5f3ed; padding-bottom: 40px; }
+.frame-layout-header { width: min(1180px, calc(100% - 32px)); height: 64px; margin: auto; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; }
+.frame-layout-header h1 { margin: 0; font-family: Georgia, serif; font-size: clamp(22px, 4vw, 34px); }
+.frame-layout-header a, .frame-layout-header button { min-height: 44px; font-weight: 800; border: 0; background: transparent; cursor: pointer; }
+.frame-layout-header button { justify-self: end; min-width: 72px; border: 1px solid var(--line); border-radius: 999px; background: white; }
+.frame-layout-shell { width: min(1180px, calc(100% - 32px)); margin: auto; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(340px, .85fr); gap: 18px; }
+.frame-layout-preview { min-width: 0; }
+.frame-layout-canvas { position: relative; width: 100%; max-height: 420px; overflow: hidden; border: 1px solid var(--line); border-radius: 12px; touch-action: pan-x pan-y; }
+.frame-wall-badge { position: absolute; z-index: 12; top: 8px; left: 8px; border-radius: 6px; background: rgba(255,255,255,.92); padding: 6px 8px; font-size: 11px; font-weight: 800; }
+.layout-frame, .layout-obstacle { position: absolute; touch-action: none; user-select: none; }
+.layout-frame { z-index: 4; cursor: grab; background: #f5eddf; box-shadow: 0 8px 16px rgba(25,35,58,.24); transition: width .2s ease, height .2s ease, left .2s ease, top .2s ease; }
+.layout-frame:active { cursor: grabbing; transition: none; }
+.layout-frame.selected { outline: 3px solid var(--orange); outline-offset: 3px; }
+.layout-frame.overlap-warning { outline: 3px solid #d82d2d; outline-offset: 3px; }
+.frame-style-thin { border: 5px solid #171717; }.frame-style-white { border: 8px solid #fff; }.frame-style-wood { border: 8px solid #9a6942; }.frame-style-gold { border: 8px solid #c9a227; }
+.frame-placeholder { position: absolute; inset: 0; display: grid; place-items: center; background: linear-gradient(135deg,#f6bd7a,#7d9da8 58%,#39485c); }
+.frame-placeholder::before { content: ""; width: 32%; aspect-ratio: 1; border-radius: 50%; background: rgba(255,226,171,.9); }
+.frame-placeholder span { position: absolute; bottom: 8%; color: white; font-size: 8px; letter-spacing: 2px; font-weight: 800; }
+.layout-frame > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+.layout-frame-label { position: absolute; left: 50%; bottom: 5px; transform: translateX(-50%); max-width: calc(100% - 8px); white-space: nowrap; border-radius: 4px; background: rgba(25,35,58,.8); color: white; padding: 3px 5px; font-size: 9px; font-weight: 800; opacity: 0; }
+.layout-frame.selected .layout-frame-label { opacity: 1; }
+.layout-obstacle { z-index: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: grab; border: 2px dashed #756858; background: repeating-linear-gradient(45deg,rgba(185,111,79,.22),rgba(185,111,79,.22) 7px,rgba(255,255,255,.18) 7px,rgba(255,255,255,.18) 14px); color: #2f352e; text-align: center; font-size: 11px; font-weight: 800; }
+.layout-obstacle.selected { outline: 3px solid #2f6383; outline-offset: 2px; }
+.layout-obstacle small { margin-top: 3px; font-size: 8px; }
+.guide-line { position: absolute; z-index: 20; pointer-events: none; background: #ef5d35; }
+.guide-x { top: 0; bottom: 0; width: 1px; }.guide-y { left: 0; right: 0; height: 1px; }
+.gap-badge { position: absolute; z-index: 21; right: 8px; bottom: 8px; border-radius: 999px; background: var(--ink); color: white; padding: 6px 9px; font-size: 11px; font-weight: 800; }
+.frame-hint { width: 100%; min-height: 44px; margin-top: 8px; border: 1px solid var(--line); border-radius: 8px; background: white; color: var(--ink); text-align: left; padding: 8px 12px; font-size: 13px; cursor: pointer; }
+.frame-hint b { float: right; }
+.frame-preview-actions { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 8px; }
+.frame-preview-actions button, .snap-toggle { min-height: 44px; border: 1px solid var(--line); border-radius: 8px; background: white; padding: 0 10px; font-weight: 800; }
+.snap-toggle { display: flex; align-items: center; gap: 6px; }
+.selected-frame-toolbar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 8px; }
+.selected-frame-toolbar button { min-height: 44px; border: 1px solid var(--line); border-radius: 8px; background: white; font-weight: 800; }
+.danger { color: #b51f1f !important; }
+.frame-layout-controls { min-width: 0; }
+.frame-tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; margin-bottom: 10px; }
+.frame-tabs button { min-height: 44px; border: 1px solid var(--line); border-radius: 8px; background: white; font-weight: 800; cursor: pointer; }
+.frame-tabs button.active { border-color: var(--ink); background: var(--ink); color: white; }
+.frame-control-card { border: 1px solid var(--line); border-radius: 10px; background: white; padding: 14px; }
+.frame-control-card h2, .frame-control-card h3 { margin: 0 0 12px; font-family: Georgia, serif; }
+.unit-toggle { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; margin-bottom: 10px; }
+.unit-toggle button, .segmented button, .frame-style-options button { min-height: 44px; border: 1px solid var(--line); border-radius: 8px; background: white; font-weight: 800; cursor: pointer; }
+.unit-toggle button.active, .segmented button.active, .frame-style-options button.active { border-color: var(--ink); background: var(--ink); color: white; }
+.frame-size-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.frame-size-inputs label, .custom-frame-size label, .obstacle-editor label, .selected-frame-editor label { display: flex; flex-direction: column; gap: 5px; font-size: 12px; font-weight: 800; }
+.frame-size-inputs input, .custom-frame-size input, .obstacle-editor input, .selected-frame-editor input { width: 100%; min-height: 44px; border: 1px solid var(--line); border-radius: 7px; padding: 0 9px; font-size: 16px; }
+.frame-error { border-radius: 7px; background: #fff0ed; color: #a52828; padding: 8px; font-size: 12px; }
+.wall-color-swatches { display: flex; flex-wrap: wrap; gap: 8px; }
+.wall-color-swatches button, .custom-color { width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 50%; cursor: pointer; }
+.wall-color-swatches button.active { outline: 3px solid var(--ink); outline-offset: 2px; }
+.custom-color { position: relative; overflow: hidden; }.custom-color input { width: 52px; height: 52px; margin: -7px; border: 0; }
+.quick-start { display: grid; gap: 7px; margin-top: 16px; }
+.quick-start button { min-height: 56px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; border: 1px solid var(--line); border-radius: 8px; background: #faf8f3; padding: 8px 10px; color: var(--ink); cursor: pointer; }
+.quick-start button small { margin-top: 3px; color: var(--muted); }
+.tentative-note { color: var(--muted); font-size: 13px; }
+.obstacle-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+.obstacle-buttons button, .primary-button, .secondary-button { min-height: 46px; border: 1px solid var(--line); border-radius: 8px; background: white; font-weight: 800; cursor: pointer; }
+.obstacle-editor, .selected-frame-editor { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+.obstacle-editor label:first-child, .obstacle-editor button, .selected-frame-editor h3, .selected-frame-editor .photo-upload { grid-column: 1 / -1; }
+.frame-layout-controls .size-chips { display: flex; gap: 7px; overflow-x: auto; margin-bottom: 10px; }
+.frame-layout-controls .size-chips button { min-height: 44px; flex: 0 0 auto; border: 1px solid var(--line); border-radius: 999px; background: #faf8f3; padding: 0 11px; font-weight: 800; }
+.frame-layout-controls .size-chips button.active { border-color: var(--orange); background: var(--orange); color: white; }
+.custom-frame-size { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin: 10px 0; }
+.custom-frame-size .unit-toggle { grid-column: 1 / -1; }
+.segmented { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 10px 0; }
+.frame-style-options { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; margin-bottom: 10px; }
+.primary-button { width: 100%; border-color: var(--ink); background: var(--ink); color: white; }
+.photo-upload { min-height: 44px; display: flex; justify-content: center; border: 1px solid var(--line); border-radius: 8px; }
+.photo-upload input { min-height: 44px; }
+.frame-count { border-bottom: 1px solid var(--line); padding-bottom: 10px; }
+.frame-count strong { color: var(--orange); font-family: Georgia, serif; font-size: 28px; }
+.summary-row { border-bottom: 1px solid var(--line); padding: 9px 0; font-size: 13px; }
+.estimated-price { margin: 12px 0; border-radius: 8px; background: #f7f4ed; padding: 12px; font-weight: 800; }
+.estimated-price small { display: block; margin-top: 4px; color: var(--muted); }
+.secondary-button { width: 100%; margin-top: 8px; }
+
 @media (max-width: 900px) {
   .wrap { width: min(100% - 32px, 1180px); }
   .nav { height: 78px; }
@@ -320,6 +398,17 @@ button:focus-visible, a:focus-visible, input:focus-visible, .upload-button:focus
 }
 
 @media (max-width: 620px) {
+  .frame-layout-header, .frame-layout-shell { width: calc(100% - 24px); }
+  .frame-layout-header { grid-template-columns: auto 1fr auto; }
+  .frame-layout-header h1 { text-align: center; font-size: 20px; }
+  .frame-layout-shell { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .frame-layout-canvas { max-height: 420px; }
+  .frame-preview-actions button, .snap-toggle { flex: 1 1 30%; justify-content: center; }
+  .selected-frame-toolbar { grid-template-columns: repeat(3, 1fr); }
+  .frame-tabs button { padding: 0 3px; font-size: 12px; }
+  .frame-control-card { padding: 12px; }
+  .frame-style-options { grid-template-columns: repeat(3, 1fr); }
+  .obstacle-buttons { grid-template-columns: 1fr 1fr; }
   .brand { font-size: 15px; }
   .brand-mark { width: 38px; height: 38px; }
   .nav-contact { padding: 10px 12px; }

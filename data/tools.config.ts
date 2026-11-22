@@ -11,6 +11,14 @@ export interface ToolConfig {
 
 export const toolsConfig: ToolConfig[] = [
   {
+    slug: "frame-layout",
+    title: "Frame Layout Maker",
+    description: "Plan a wall of frames and share the layout.",
+    icon: "🖼️",
+    path: "/tools/frame-layout",
+    status: "live",
+  },
+  {
     slug: "print-visualizer",
     title: "Print Size Visualizer",
     description: "See print and flex sizes against real-world scenes.",
