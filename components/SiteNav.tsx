@@ -12,6 +12,10 @@ export default function SiteNav() {
         <Link href="/#work">Our Work</Link>
         <Link href="/#about">About</Link>
         <Link href="/tools">Tools</Link>
+        <Link className="nav-send-files" href="/send-files">
+          <span aria-hidden="true">✉️</span>
+          Send Files for Printing
+        </Link>
         <Link className="nav-contact" href="/#contact">Visit Us</Link>
       </div>
     </nav>

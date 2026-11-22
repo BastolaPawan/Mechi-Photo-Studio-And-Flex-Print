@@ -11,6 +11,14 @@ export interface ToolConfig {
 
 export const toolsConfig: ToolConfig[] = [
   {
+    slug: "send-files",
+    title: "Send Files for Printing",
+    description: "Email your photos, designs or documents.",
+    icon: "✉️",
+    path: "/send-files",
+    status: "live",
+  },
+  {
     slug: "frame-layout",
     title: "Frame Layout Maker",
     description: "Plan a wall of frames and share the layout.",

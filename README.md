@@ -13,9 +13,11 @@ Create a `.env.local` file for the WhatsApp button:
 
 ```text
 WHATSAPP_NUMBER=
+CONTACT_EMAIL=
 ```
 
 Use the international number without `+` or spaces. The button is hidden when this value is absent.
+Set `CONTACT_EMAIL` to the studio email address to enable the `/send-files` email actions. This value is read only from the environment and is never committed to source.
 
 ## Tests and build
 
@@ -27,7 +29,7 @@ npm run start
 
 ## Vercel deployment
 
-Set `WHATSAPP_NUMBER` in the Vercel project environment settings. No filesystem writes or database state are used. Next.js route handlers serve the tools, sizes and environment-dependent WhatsApp configuration, and static CSS/JS are emitted by the normal Next.js build.
+Set `WHATSAPP_NUMBER` and `CONTACT_EMAIL` in the Vercel project environment settings. No filesystem writes or database state are used. Next.js route handlers serve the tools, sizes and environment-dependent contact configuration, and static CSS/JS are emitted by the normal Next.js build.
 
 No `vercel.json` override is required.
 
