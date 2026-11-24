@@ -1,5 +1,28 @@
 # Mechi Photo Studio & Flex Print
 
+## Offers database setup
+
+The offers system uses Neon Postgres through Prisma. In Vercel:
+
+1. Open Storage or Integrations, add a Neon database, and copy the pooled `DATABASE_URL`.
+2. Add these variables under Project → Settings → Environment Variables for Production, Preview and Development:
+   - `DATABASE_URL`
+   - `ADMIN_PASSWORD`
+   - `SESSION_SECRET`
+   - `WHATSAPP_NUMBER`
+   - `CONTACT_EMAIL`
+3. Deploy once so `prisma generate` and the build run. Then run migrations and seed:
+
+```bash
+npx prisma migrate deploy
+npm run seed
+```
+
+Use `npm run seed -- --force` only when you intentionally want the JSON seed to overwrite existing owner edits.
+For an existing database, create the initial migration with `npx prisma migrate dev --name add_offers`, then deploy it with `npx prisma migrate deploy`.
+
+Season tags are free-form strings in the admin form. Separate multiple tags with commas. Use `mangsir` for wedding-season offers and `evergreen` for year-round offers.
+
 Next.js 14 App Router website for Mechi Photo Studio And Flex Print.
 
 ## Local development

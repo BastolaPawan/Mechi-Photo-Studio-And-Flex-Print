@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Offer {
+  id           String       @id @default(cuid())
+  number       Int          @unique
+  slug         String       @unique
+  name         String
+  category     String
+  icon         String
+  targetCustomer String
+  price        Int
+  originalPrice Int?
+  cost         Int
+  included     String
+  bonus        String       @default("")
+  scarcityText String       @default("")
+  guarantee    String       @default("")
+  upsell       String       @default("")
+  status       String
+  featured     Boolean      @default(false)
+  badge        String?
+  seasonTags   String[]
+  slotsLimit   Int?
+  slotsClaimed Int          @default(0)
+  startsAt     DateTime?
+  endsAt       DateTime?
+  sortOrder    Int          @default(0)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  events       OfferEvent[]
+}
+
+model OfferEvent {
+  id        String   @id @default(cuid())
+  offerId   String?
+  offer     Offer?   @relation(fields: [offerId], references: [id], onDelete: SetNull)
+  type      String
+  utm       String?
+  createdAt DateTime @default(now())
+}

@@ -1,4 +1,6 @@
 import SiteNav from "@/components/SiteNav";
+import Link from "next/link";
+import { prisma } from "@/lib/prisma";
 
 const services = [
   {
@@ -56,7 +58,16 @@ const gallery = [
   },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const now = new Date();
+  const mangsirOffers = await prisma.offer.findMany({
+    where: { status: "live", featured: true, seasonTags: { has: "mangsir" }, AND: [
+      { OR: [{ startsAt: null }, { startsAt: { lte: now } }] },
+      { OR: [{ endsAt: null }, { endsAt: { gte: now } }] },
+    ] },
+    take: 3,
+    orderBy: [{ sortOrder: "asc" }, { number: "asc" }],
+  }).catch(() => []);
   return (
     <main>
       <SiteNav />
@@ -93,6 +104,23 @@ export default function Home() {
           </div>
         </div>
       </header>
+
+      {mangsirOffers.length > 0 && (
+        <section className="mangsir-strip" aria-label="This Mangsir offers">
+          <div className="wrap mangsir-strip-inner">
+            <div className="mangsir-strip-heading"><p>This Mangsir</p><h2>Featured offers</h2></div>
+            <div className="mangsir-strip-list">
+              {mangsirOffers.map((offer) => (
+                <Link href={`/offers/${offer.slug}`} key={offer.slug}>
+                  <span aria-hidden="true">{offer.icon}</span>
+                  <b>{offer.name}</b>
+                  <strong>NPR {offer.price.toLocaleString("en-IN")}</strong>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="trust-strip" aria-label="Studio highlights">
         <div className="wrap trust-grid">

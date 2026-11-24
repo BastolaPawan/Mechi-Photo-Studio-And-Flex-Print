@@ -8,6 +8,7 @@ export default function SiteNav() {
         <span>Mechi <strong>Photo Studio &amp; Flex Print</strong></span>
       </Link>
       <div className="nav-links">
+        <Link href="/offers" className="nav-offers">Offers <span>Mangsir</span></Link>
         <Link href="/#services">Services</Link>
         <Link href="/#work">Our Work</Link>
         <Link href="/#about">About</Link>
