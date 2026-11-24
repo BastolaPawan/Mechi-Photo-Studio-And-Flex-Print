@@ -8,8 +8,9 @@
     "start": "next start",
     "test": "vitest run",
     "postinstall": "prisma generate",
-    "seed": "tsx prisma/seed.ts",
-    "prisma:migrate": "prisma migrate deploy"
+    "seed": "dotenv -e .env.local -- tsx prisma/seed.ts",
+    "prisma:migrate": "dotenv -e .env.local -- prisma migrate deploy",
+    "prisma:validate": "dotenv -e .env.local -- prisma validate"
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",
@@ -22,6 +23,7 @@
     "@types/node": "20.14.10",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
+    "dotenv-cli": "^11.1.0",
     "tsx": "^4.23.15",
     "typescript": "5.5.3",
     "vitest": "2.1.9"
